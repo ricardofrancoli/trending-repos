@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { getTrendingPublicRepos } from '@/api/controllers/repos';
 import Repo from '@/components/repos/Repo';
 
+import styles from './Repos.module.css';
+
 import type { Item as RepoItem } from '@/types/repos';
 
 function Repos() {
@@ -38,7 +40,7 @@ function Repos() {
 
   if (repos) {
     return (
-      <>
+      <div className={styles.repos}>
         <ul>
           {repos.map((item) => (
             <li key={item.id}>
@@ -46,7 +48,7 @@ function Repos() {
             </li>
           ))}
         </ul>
-      </>
+      </div>
     );
   }
 
