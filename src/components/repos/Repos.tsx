@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { getTrendingPublicRepos } from '@/api/controllers/repos';
+import Repo from '@/components/repos/Repo';
 
 import type { Item as RepoItem } from '@/types/repos';
 
@@ -40,7 +41,9 @@ function Repos() {
       <>
         <ul>
           {repos.map((item) => (
-            <li key={item.id}>{item.name}</li>
+            <li key={item.id}>
+              <Repo {...item} />
+            </li>
           ))}
         </ul>
       </>

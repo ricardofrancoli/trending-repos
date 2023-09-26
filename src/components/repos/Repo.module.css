@@ -1,0 +1,27 @@
+.repo {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin: 10px 0;
+}
+
+.repo > * {
+  width: fit-content;
+}
+
+.repo:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.repo h3 {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.repo p {
+  margin: 0;
+}
