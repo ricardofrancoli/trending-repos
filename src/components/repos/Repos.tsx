@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 
 import { getTrendingPublicRepos } from '@/api/controllers/repos';
 
+import type { Item as RepoItem } from '@/types/repos';
+
 function Repos() {
-  const [data, setData] =
-    useState<Awaited<ReturnType<typeof getTrendingPublicRepos>>>();
+  const [repos, setRepos] = useState<RepoItem[]>();
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
@@ -13,7 +14,7 @@ function Repos() {
       try {
         const res = await getTrendingPublicRepos();
 
-        setData(res);
+        setRepos(res);
       } catch (err) {
         console.error(err);
 
@@ -34,11 +35,11 @@ function Repos() {
     return <p>Error...</p>;
   }
 
-  if (data) {
+  if (repos) {
     return (
       <>
         <ul>
-          {data.items.map((item) => (
+          {repos.map((item) => (
             <li key={item.id}>{item.name}</li>
           ))}
         </ul>
