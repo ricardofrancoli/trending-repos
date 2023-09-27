@@ -1,10 +1,13 @@
 import { format as formatDate } from 'date-fns';
+
+import FavouriteToggle from './FavouriteToggle';
 import styles from './Repo.module.css';
 
 import type { Item as RepoItem } from '@/types/repos';
 
 function Repo(props: RepoItem) {
   const {
+    id,
     name,
     created_at: createdAt,
     stargazers_count: stargazersCount,
@@ -19,6 +22,7 @@ function Repo(props: RepoItem) {
       <p>Created: {formattedCreatedAt}</p>
       <p>⭐️ {stargazersCount}</p>
       <a href={htmlUrl}>See it on GitHub</a>
+      <FavouriteToggle id={id} />
     </div>
   );
 }
