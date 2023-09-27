@@ -9,6 +9,9 @@ import styles from './Repos.module.css';
 import type { Item as RepoItem } from '@/types/repos';
 
 function Repos() {
+  /*
+    Repos fetching
+  */
   const [repos, setRepos] = useState<RepoItem[]>();
   const [favouriteRepoIds, setFavouriteRepoIds] = useState<number[]>();
   const [isLoading, setIsLoading] = useState(true);
@@ -39,6 +42,39 @@ function Repos() {
     fetchRepos();
   }, []);
 
+  /* 
+    Form handling
+  */
+  const [numberOfRepos, setNumberOfRepos] = useState('');
+
+  const handleNumberOfReposChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const { value } = event.target;
+
+    setNumberOfRepos(value);
+  };
+
+  const handleSubmit = async () => {
+    const parsedNumberOfRepos = parseInt(numberOfRepos);
+
+    if (parsedNumberOfRepos >= 1 && parsedNumberOfRepos <= 200) {
+      setIsLoading(true);
+
+      try {
+        const res = await getTrendingPublicRepos(parsedNumberOfRepos);
+
+        setRepos(res);
+      } catch (err) {
+        console.error(err);
+
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+  };
+
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -50,6 +86,21 @@ function Repos() {
   if (repos) {
     return (
       <div className={styles.repos}>
+        <div className={styles.container}>
+          <div className={styles.form}>
+            <input
+              className={styles.input}
+              type='number'
+              min='1'
+              max='200'
+              value={numberOfRepos}
+              onChange={handleNumberOfReposChange}
+            />
+            <button className={styles.button} onClick={handleSubmit}>
+              Go!
+            </button>
+          </div>
+        </div>
         <ul>
           {repos.map((item) => (
             <li key={item.id}>

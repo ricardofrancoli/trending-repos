@@ -4,8 +4,9 @@
   font-weight: 400;
 
   --background-colour: #212121;
+  --background-colour-lighter: #383838;
   --main-colour: #e3e3e3;
-  --accent-colour: #edb340;
+  --accent-colour: #80cee1;
 
   color: var(--main-colour);
   background-color: var(--background-colour);

@@ -1,3 +1,41 @@
 li {
   list-style-type: none;
 }
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+input {
+  background-color: var(--background-colour-lighter);
+  color: var(--main-colour);
+  border-radius: 10px;
+  height: 30px;
+  padding-left: 15px;
+  border: 2px solid transparent;
+  margin-bottom: 3px;
+}
+
+input:focus {
+  outline: none;
+  border: 2px solid var(--accent-colour);
+}
+
+button {
+  background-color: var(--accent-colour);
+  padding: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  width: 200px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+}
