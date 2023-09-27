@@ -1,0 +1,29 @@
+:root {
+  --fav-colour: #f05782;
+}
+
+.fav {
+  padding: 15px;
+  border: 1px solid var(--fav-colour);
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin: 10px 0;
+  cursor: pointer;
+
+  &.marked {
+    background-color: var(--fav-colour);
+  }
+}
+
+.fav > * {
+  width: fit-content;
+}
+
+.fav:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.fav p {
+  margin: 0;
+}
