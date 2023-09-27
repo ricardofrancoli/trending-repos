@@ -5,8 +5,14 @@ import styles from './FavouriteToggle.module.css';
 
 import type { Response as FavouriteToggleResponse } from '@/types/favourite-toggle';
 
-function FavouriteToggle({ id }: { id: number }) {
-  const [isFavourite, setIsFavourite] = useState(false);
+function FavouriteToggle({
+  id,
+  isFavourite: isInitialFavourite,
+}: {
+  id: number;
+  isFavourite: boolean;
+}) {
+  const [isFavourite, setIsFavourite] = useState(isInitialFavourite);
 
   const toggleFavourite = async (id: number) => {
     try {

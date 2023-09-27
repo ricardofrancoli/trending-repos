@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import ky from 'ky';
 
 import { getTrendingPublicRepos } from '@/api/controllers/repos';
 import Repo from '@/components/repos/Repo';
@@ -9,15 +10,23 @@ import type { Item as RepoItem } from '@/types/repos';
 
 function Repos() {
   const [repos, setRepos] = useState<RepoItem[]>();
+  const [favouriteRepoIds, setFavouriteRepoIds] = useState<number[]>();
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     const fetchRepos = async () => {
       try {
-        const res = await getTrendingPublicRepos();
+        const getFavouriteRepoIds = async (): Promise<number[]> => {
+          return ky.get('/api/favourites').json();
+        };
 
-        setRepos(res);
+        const [trendingPublicReposRes, favouriteRepoIdsRes] = await Promise.all(
+          [getTrendingPublicRepos(), getFavouriteRepoIds()]
+        );
+
+        setRepos(trendingPublicReposRes);
+        setFavouriteRepoIds(favouriteRepoIdsRes);
       } catch (err) {
         console.error(err);
 
@@ -44,7 +53,10 @@ function Repos() {
         <ul>
           {repos.map((item) => (
             <li key={item.id}>
-              <Repo {...item} />
+              <Repo
+                repo={item}
+                isFavourite={favouriteRepoIds?.includes(item.id) ?? false}
+              />
             </li>
           ))}
         </ul>
