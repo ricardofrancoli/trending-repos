@@ -14,6 +14,8 @@ function Repo(props: Props) {
   const {
     id,
     name,
+    description,
+    forks_count,
     created_at: createdAt,
     stargazers_count: stargazersCount,
     html_url: htmlUrl,
@@ -24,8 +26,12 @@ function Repo(props: Props) {
   return (
     <div className={styles.repo}>
       <h3>{name}</h3>
+      <p>{description}</p>
       <p>Created: {formattedCreatedAt}</p>
-      <p>⭐️ {stargazersCount}</p>
+      <div className={styles.stats}>
+        <p>⭐️ {stargazersCount}</p>
+        <p>🔱 {forks_count}</p>
+      </div>
       <a href={htmlUrl}>See it on GitHub</a>
       <FavouriteToggle id={id} isFavourite={props.isFavourite} />
     </div>

@@ -12,6 +12,8 @@
 
 .repo > * {
   width: fit-content;
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
 
 .repo:hover {
@@ -19,10 +21,16 @@
 }
 
 .repo h3 {
+  font-size: 1.75rem;
   margin: 0;
   margin-bottom: 10px;
 }
 
 .repo p {
   margin: 0;
+}
+
+.stats {
+  display: flex;
+  gap: 1rem;
 }
