@@ -16,6 +16,7 @@ function Repos() {
   const [favouriteRepoIds, setFavouriteRepoIds] = useState<number[]>();
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const fetchRepos = async () => {
@@ -34,6 +35,9 @@ function Repos() {
         console.error(err);
 
         setIsError(true);
+
+        const errorMessage = err instanceof Error ? err.message : String(err);
+        setErrorMessage(errorMessage);
       } finally {
         setIsLoading(false);
       }
@@ -87,7 +91,12 @@ function Repos() {
   }
 
   if (isError) {
-    return <p>Error...</p>;
+    return (
+      <>
+        <p>Error...</p>
+        <p>{errorMessage}</p>
+      </>
+    );
   }
 
   if (repos) {
