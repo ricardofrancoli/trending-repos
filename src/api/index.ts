@@ -1,8 +1,9 @@
-import Fastify, { type FastifyRequest } from 'fastify';
+import Fastify from 'fastify';
 
+import type { FastifyRequest } from 'fastify';
 import type { FavouriteToggle } from '@/types';
 
-const api = Fastify({
+export const api = Fastify({
   logger: true,
 });
 
@@ -52,11 +53,3 @@ api.post('/api/toggle-favourites', async (req, reply) => {
     reply.status(500).send(`Could not toggle favourite: ${err}`);
   }
 });
-
-try {
-  await api.listen({ port: 3001 });
-  console.log(`Listening on port ${3001}`);
-} catch (err) {
-  api.log.error(err);
-  process.exit(1);
-}
