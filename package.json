@@ -9,7 +9,8 @@
     "dev": "concurrently -n \"client,api\" -c \"blue,green\" -p \"[{name}]\" \"pnpm run dev:client\" \"pnpm run dev:api\"",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest"
   },
   "dependencies": {
     "date-fns": "^2.30.0",
@@ -20,6 +21,8 @@
   },
   "devDependencies": {
     "@octokit/types": "^12.0.0",
+    "@testing-library/jest-dom": "^6.1.3",
+    "@testing-library/react": "^14.0.0",
     "@types/node": "^20.6.5",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
@@ -30,8 +33,10 @@
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "happy-dom": "^12.2.0",
     "tsx": "^3.13.0",
     "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vitest": "^0.34.5"
   }
 }
