@@ -22,5 +22,9 @@ export default defineConfig({
   test: {
     globals: true,
     setupFiles: './src/setupTest.ts',
+    environmentMatchGlobs: [
+      ['src/**', 'happy-dom'],
+      ['src/api/*.spec.ts', 'node'],
+    ],
   },
 });
