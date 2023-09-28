@@ -7,6 +7,7 @@
   --background-colour-lighter: #383838;
   --main-colour: #e3e3e3;
   --accent-colour: #80cee1;
+  --error-colour: #ff6961;
 
   color: var(--main-colour);
   background-color: var(--background-colour);

@@ -9,6 +9,7 @@ ul {
 .container {
   display: flex;
   justify-content: center;
+  height: 130px;
 }
 
 .form {
@@ -42,4 +43,10 @@ button {
   font-weight: bold;
   font-size: 1rem;
   cursor: pointer;
+}
+
+.error {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--error-colour);
 }

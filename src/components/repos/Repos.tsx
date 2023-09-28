@@ -46,6 +46,7 @@ function Repos() {
     Form handling
   */
   const [numberOfRepos, setNumberOfRepos] = useState('');
+  const [isInputError, setIsInputError] = useState(false);
 
   const handleNumberOfReposChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -72,6 +73,12 @@ function Repos() {
       } finally {
         setIsLoading(false);
       }
+    } else {
+      setIsInputError(true);
+
+      setTimeout(() => {
+        setIsInputError(false);
+      }, 3000);
     }
   };
 
@@ -99,6 +106,9 @@ function Repos() {
             <button className={styles.button} onClick={handleSubmit}>
               Go!
             </button>
+            {isInputError && (
+              <p className={styles.error}>Value must be between 1 and 200</p>
+            )}
           </div>
         </div>
         <ul>
